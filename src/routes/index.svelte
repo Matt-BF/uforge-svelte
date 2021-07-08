@@ -1,29 +1,17 @@
 <script>
-	import authStore from '../stores/authStore';
-	import { goto } from '$app/navigation';
-	import firebase from 'firebase/app';
+import authStore from "../stores/authStore";
+import LoginCard from "../components/LoginCard.svelte";
+import { goto } from "$app/navigation";
 
-	authStore.subscribe(async ({ isLoggedIn, firebaseControlled }) => {
-		if (!isLoggedIn && firebaseControlled) {
-			await goto('/login');
-		}
-	});
-
-	async function logout() {
-		await firebase.auth().signOut();
-	}
+authStore.subscribe(async ({ isLoggedIn }) => {
+  if (isLoggedIn) {
+    await goto("/dash");
+  }
+});
 </script>
 
-{#if $authStore.isLoggedIn}
-    <h1>Hello {$authStore.user.displayName}</h1>
-	<p>{$authStore.user.email}</p>
-    <button on:click={logout}>Logout</button>
-{:else}
-<h1>Loading...</h1>
-{/if}
-
-
-
-
-
-
+<div
+  class="flex flex-col p-5 h-screen lg:flex-row lg:items-center lg:justify-evenly">
+  <img class="md:w-1/2 lg:w-1/3 self-center" src="logo_microForge.png" alt="" />
+  <LoginCard />
+</div>

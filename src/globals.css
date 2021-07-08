@@ -1,25 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
-:root {
-	--primary-color: #154247;
-	--secondary-color: #278980;
-	--tertiary-color: #2bbcb2;
-	--quaternary-color: #c5c8c4;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-}
-
-body {
-	font-family: 'Roboto', sans-serif;
-}
-
-h1 {
-	font-weight: 400;
-}
-
-h2 {
-	font-weight: 300;
+@layer components {
+	.inputLogin {
+		@apply text-center placeholder-gray-500 bg-gray-200 border border-transparent
+    rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 mb-5;
+	}
 }
